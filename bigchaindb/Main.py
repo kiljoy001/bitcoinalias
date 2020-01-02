@@ -1,4 +1,4 @@
-from CreateUser import User
+from .CreateUser import User
 
 Input_Bitcoin_Address = input("Enter your Address : ")
 Input_Bitcoin_Alias = input('Enter your preferred alias :')
