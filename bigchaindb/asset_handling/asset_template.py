@@ -1,5 +1,5 @@
 from bigchaindb_driver import BigchainDB
-
+"""Test Keys: Public:'7JxiZgoRUZvASFZQbgNbGjjqPHhJQTDKeeyyueMp4rjC', Private: 'B6uFt3PJNHhK48jE6m24j5mu2ykEjHyVKV4CpWUuFxp9'"""
 
 class Asset:
     """sets and describes json template for BigChainDb asset"""
@@ -8,15 +8,15 @@ class Asset:
     Bdb = BigchainDB(URL)
 
     def __init__(self, address, alias):
-        self.Bitcoin_Address = address
-        self.Metadata = alias
-        self.Bitcoin_Address_Asset_Data = {
+        self.bitcoin_address = address
+        self.metadata = alias
+        self.bitcoin_address_asset_data = {
             'data': {
                 'address_alias_pair': {
-                    'bitcoin_address': self.Bitcoin_Address,
+                    'bitcoin_address': self.bitcoin_address,
                     }
-                    }
-                    }
+                }
+            }
 
     def transfer_asset(self, public_key, owners_private_key, txid, new_alias = None):
         """Update asset with new alias"""
@@ -37,11 +37,11 @@ class Asset:
         transfer_input = {
             'fulfillment': output['condition']['details'],
             'fulfills': {
-             'output_index': output_index,
-             'transaction_id': creation_tx['id'],
-         },
-         'owners_before': output['public_keys'],
-        }
+            'output_index': output_index,
+            'transaction_id': creation_tx['id'],
+            },
+            'owners_before': output['public_keys'],
+            }
 
         prepared_transfer_tx = Asset.Bdb.transactions.prepare(
             operation='TRANSFER',
@@ -63,8 +63,8 @@ class Asset:
         prepared_creation_tx = Asset.Bdb.transactions.prepare(
             operation='CREATE',
             signers=public_key,
-            asset=self.Bitcoin_Address_Asset_Data,
-            metadata={'updated_alias':self.Metadata}
+            asset=self.bitcoin_address_asset_data,
+            metadata={'updated_alias':self.metadata}
         )
 
         """Sign transaction with private key"""
@@ -73,4 +73,7 @@ class Asset:
             private_keys=owners_private_key
         )
         """Send transaction to BigchainDb node"""
-        Asset.Bdb.transactions.send_commit(signed_transaction)
+        sent_token = Asset.Bdb.transactions.send_commit(signed_transaction)
+
+        """Return TxId"""
+        return sent_token['id']

@@ -1,0 +1,47 @@
+************* Module bigchaindb.views
+bigchaindb/views.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+bigchaindb/views.py:1:0: W0611: Unused render imported from django.shortcuts (unused-import)
+************* Module bigchaindb.apps
+bigchaindb/apps.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+bigchaindb/apps.py:4:0: C0115: Missing class docstring (missing-class-docstring)
+************* Module bigchaindb.admin
+bigchaindb/admin.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+bigchaindb/admin.py:1:0: W0611: Unused admin imported from django.contrib (unused-import)
+************* Module bigchaindb.scratch_pad
+bigchaindb/scratch_pad.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+bigchaindb/scratch_pad.py:1:0: E0401: Unable to import 'AssetTemplate' (import-error)
+bigchaindb/scratch_pad.py:3:0: W0105: String statement has no effect (pointless-string-statement)
+bigchaindb/scratch_pad.py:6:7: E0602: Undefined variable 'new_asset' (undefined-variable)
+************* Module bigchaindb.tests
+bigchaindb/tests.py:15:0: C0303: Trailing whitespace (trailing-whitespace)
+bigchaindb/tests.py:23:0: C0303: Trailing whitespace (trailing-whitespace)
+bigchaindb/tests.py:43:0: C0303: Trailing whitespace (trailing-whitespace)
+bigchaindb/tests.py:48:0: C0303: Trailing whitespace (trailing-whitespace)
+bigchaindb/tests.py:52:0: C0303: Trailing whitespace (trailing-whitespace)
+bigchaindb/tests.py:55:0: C0301: Line too long (182/100) (line-too-long)
+bigchaindb/tests.py:56:0: C0304: Final newline missing (missing-final-newline)
+bigchaindb/tests.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+bigchaindb/tests.py:2:0: E0401: Unable to import 'bigchaindb.BitcoinAddressFormatChecker' (import-error)
+bigchaindb/tests.py:3:0: E0401: Unable to import 'bigchaindb.AssetTemplate' (import-error)
+bigchaindb/tests.py:7:0: C0103: Class name "Test_Bitcoin_Address_Format_Checker" doesn't conform to PascalCase naming style (invalid-name)
+bigchaindb/tests.py:11:8: C0103: Attribute name "GoodAddress" doesn't conform to snake_case naming style (invalid-name)
+bigchaindb/tests.py:12:8: C0103: Attribute name "BadChecksum" doesn't conform to snake_case naming style (invalid-name)
+bigchaindb/tests.py:13:8: C0103: Attribute name "BadTooFewChar" doesn't conform to snake_case naming style (invalid-name)
+bigchaindb/tests.py:7:0: C0115: Missing class docstring (missing-class-docstring)
+bigchaindb/tests.py:20:4: C0116: Missing function or method docstring (missing-function-docstring)
+bigchaindb/tests.py:24:4: C0116: Missing function or method docstring (missing-function-docstring)
+bigchaindb/tests.py:28:4: C0116: Missing function or method docstring (missing-function-docstring)
+bigchaindb/tests.py:32:0: C0103: Class name "Test_BigchainDB_Transactions" doesn't conform to PascalCase naming style (invalid-name)
+bigchaindb/tests.py:41:8: C0103: Attribute name "TxId" doesn't conform to snake_case naming style (invalid-name)
+bigchaindb/tests.py:32:0: C0115: Missing class docstring (missing-class-docstring)
+bigchaindb/tests.py:49:4: C0116: Missing function or method docstring (missing-function-docstring)
+bigchaindb/tests.py:53:4: C0116: Missing function or method docstring (missing-function-docstring)
+bigchaindb/tests.py:4:0: C0411: third party import "from bigchaindb_driver.crypto import generate_keypair" should be placed before "from .BitcoinAddressFormatChecker import Checker" (wrong-import-order)
+bigchaindb/tests.py:5:0: C0411: third party import "from bigchaindb_driver.driver import BigchainDB" should be placed before "from .BitcoinAddressFormatChecker import Checker" (wrong-import-order)
+************* Module bigchaindb.models
+bigchaindb/models.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+bigchaindb/models.py:1:0: W0611: Unused models imported from django.db (unused-import)
+
+------------------------------------------------------------------
+Your code has been rated at 0.54/10 (previous run: 0.36/10, +0.17)
+
