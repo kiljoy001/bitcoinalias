@@ -1,6 +1,4 @@
-from AssetTemplate import Asset
-
-"""Just a testing spot for working with bigchaindb"""
+from bigchaindb.asset_handling.asset_template import Asset
 
 NEW_ASSET = Asset('18V6RzeJ6wodhyQNAwrCdRD7mAUavggWkZ', 'scott.j.guyton')
 TXID = NEW_ASSET.create_asset('7JxiZgoRUZvASFZQbgNbGjjqPHhJQTDKeeyyueMp4rjC', \

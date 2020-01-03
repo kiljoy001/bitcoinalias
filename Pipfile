@@ -11,6 +11,7 @@ bigchaindb-driver = "*"
 django = "*"
 base58 = "*"
 pylint = "*"
+pylint-django = "*"
 
 [requires]
 python_version = "3.6"

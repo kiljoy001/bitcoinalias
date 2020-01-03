@@ -1,6 +1,6 @@
 from django.test import TestCase, SimpleTestCase
-from .BitcoinAddressFormatChecker import Checker
-from .AssetTemplate import Asset
+from bigchaindb.asset_handling.bitcoin_address_format_checker import Checker
+from bigchaindb.asset_handling.asset_template import Asset
 from bigchaindb_driver.crypto import generate_keypair
 from bigchaindb_driver.driver import BigchainDB
 

@@ -11,7 +11,6 @@ bigchaindb/admin.py:1:0: W0611: Unused admin imported from django.contrib (unuse
 bigchaindb/scratch_pad.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 bigchaindb/scratch_pad.py:1:0: E0401: Unable to import 'AssetTemplate' (import-error)
 bigchaindb/scratch_pad.py:3:0: W0105: String statement has no effect (pointless-string-statement)
-bigchaindb/scratch_pad.py:6:7: E0602: Undefined variable 'new_asset' (undefined-variable)
 ************* Module bigchaindb.tests
 bigchaindb/tests.py:15:0: C0303: Trailing whitespace (trailing-whitespace)
 bigchaindb/tests.py:23:0: C0303: Trailing whitespace (trailing-whitespace)
@@ -41,7 +40,13 @@ bigchaindb/tests.py:5:0: C0411: third party import "from bigchaindb_driver.drive
 ************* Module bigchaindb.models
 bigchaindb/models.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 bigchaindb/models.py:1:0: W0611: Unused models imported from django.db (unused-import)
+************* Module bigchaindb.bitcoing_alias.urls
+bigchaindb/bitcoing_alias/urls.py:19:0: C0103: Constant name "urlpatterns" doesn't conform to UPPER_CASE naming style (invalid-name)
+************* Module bigchaindb.bitcoing_alias.wsgi
+bigchaindb/bitcoing_alias/wsgi.py:16:0: C0103: Constant name "application" doesn't conform to UPPER_CASE naming style (invalid-name)
+************* Module bigchaindb.bitcoing_alias.asgi
+bigchaindb/bitcoing_alias/asgi.py:16:0: C0103: Constant name "application" doesn't conform to UPPER_CASE naming style (invalid-name)
 
 ------------------------------------------------------------------
-Your code has been rated at 0.54/10 (previous run: 0.36/10, +0.17)
+Your code has been rated at 4.00/10 (previous run: 0.54/10, +3.46)
 
