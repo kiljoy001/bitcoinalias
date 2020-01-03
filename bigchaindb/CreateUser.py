@@ -1,5 +1,5 @@
 from bigchaindb_driver.crypto import generate_keypair
-from .BitcoinAddressFormatChecker import Checker
+from BitcoinAddressFormatChecker import Checker
 
 
 class User:

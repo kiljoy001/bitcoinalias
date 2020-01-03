@@ -5,53 +5,72 @@ class Asset:
     """sets and describes json template for BigChainDb asset"""
 
     URL = 'https://test.ipdb.io/'
+    Bdb = BigchainDB(URL)
 
-    def __init__(self, address, alias, user_key_pair):
-        self.bdb = BigchainDB(Asset.URL)
+    def __init__(self, address, alias):
         self.Bitcoin_Address = address
-        self.Alias = alias
-        self.TxId = None
-        self.key_pair = user_key_pair
-        self.Bitcoin_Address_Asset_Data = {'data': {
-            'address_alias_pair': {
-                'bitcoin_address': self.Bitcoin_Address,
-                'alias_name': self.Alias
-            }
-        }
-        }
+        self.Metadata = alias
+        self.Bitcoin_Address_Asset_Data = {
+            'data': {
+                'address_alias_pair': {
+                    'bitcoin_address': self.Bitcoin_Address,
+                    }
+                    }
+                    }
 
-    def append_alias_name(self, pubkey, new_alias):
+    def transfer_asset(self, public_key, owners_private_key, txid, new_alias = None):
         """Update asset with new alias"""
-        prepared_append_tx = self.bdb.transactions.retrieve(self.TxId)
-        asset_id = prepared_append_tx['id']
+        creation_tx = Asset.Bdb.transactions.retrieve(txid)
+        asset_id = creation_tx['id']
         transfer_asset = {
             'id': asset_id
         }
+        """Check if alias is being updated"""
+        if new_alias is None:
+            metadata = creation_tx['metadata']
+        else:
+            metadata = {'updated_alias':new_alias}
+        
+        """Transfer Data"""
         output_index = 0
-        output = prepared_append_tx['outputs']
+        output = creation_tx['outputs'][output_index]
+        transfer_input = {
+            'fulfillment': output['condition']['details'],
+            'fulfills': {
+             'output_index': output_index,
+             'transaction_id': creation_tx['id'],
+         },
+         'owners_before': output['public_keys'],
+        }
 
-    def create_alias_asset(self):
+        prepared_transfer_tx = Asset.Bdb.transactions.prepare(
+            operation='TRANSFER',
+            asset=transfer_asset,
+            inputs=transfer_input,
+            recipients=public_key,
+            metadata=metadata,
+        )
+        """Sign transaction"""
+        fulfilled_transfer_tx = Asset.Bdb.transactions.fulfill(
+            prepared_transfer_tx,
+            private_keys = owners_private_key
+        )
+        """Send to node"""
+        Asset.Bdb.transactions.send_commit(fulfilled_transfer_tx)
+
+    def create_asset(self, public_key, owners_private_key):
         """Create an asset"""
-        prepared_creation_tx = self.bdb.transactions.prepare(
+        prepared_creation_tx = Asset.Bdb.transactions.prepare(
             operation='CREATE',
-            signers=self.key_pair.public_key,
-            asset=self.Bitcoin_Address_Asset_Data
+            signers=public_key,
+            asset=self.Bitcoin_Address_Asset_Data,
+            metadata={'updated_alias':self.Metadata}
         )
 
         """Sign transaction with private key"""
-        signed_transaction = self.bdb.transactions.fulfill(
+        signed_transaction = Asset.Bdb.transactions.fulfill(
             prepared_creation_tx,
-            private_keys=self.key_pair.private_key
+            private_keys=owners_private_key
         )
         """Send transaction to BigchainDb node"""
-        send_to_bigchain = self.bdb.transactions.send_commit(signed_transaction)
-
-        """Transaction check"""
-        if send_to_bigchain == signed_transaction:
-            self.TxId = signed_transaction['id']
-            return True
-        else:
-            return False
-
-
-
+        Asset.Bdb.transactions.send_commit(signed_transaction)

@@ -1,8 +1,6 @@
-from .CreateUser import User
+from CreateUser import User
+from AssetTemplate import Asset
 
-Input_Bitcoin_Address = input("Enter your Address : ")
-Input_Bitcoin_Alias = input('Enter your preferred alias :')
-NewUser = User()
-NewUser.set_bitcoin_address(Input_Bitcoin_Address)
-NewUser.create()
-print(NewUser.show_keys())
+new_asset = Asset('18V6RzeJ6wodhyQNAwrCdRD7mAUavggWkZ', 'scott.j.guyton')
+#new_asset.create_asset('7JxiZgoRUZvASFZQbgNbGjjqPHhJQTDKeeyyueMp4rjC', 'B6uFt3PJNHhK48jE6m24j5mu2ykEjHyVKV4CpWUuFxp9')
+print(new_asset.Bdb.metadata.get(search='scott.j.guyton'))
