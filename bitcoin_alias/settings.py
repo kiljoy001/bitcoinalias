@@ -38,10 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bdbAssetCreator.apps.BdbassetcreatorConfig',
-    'crispy_forms',
 ]
-
-CRISPY_TEMPLATE_PACK ='bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -58,7 +55,7 @@ ROOT_URLCONF = 'bitcoin_alias.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'bitcoin_alias/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
