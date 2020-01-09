@@ -12,7 +12,6 @@ class Checker:
             return True
         
         except ValueError:
-            #print(e)
             return False
 
     def update_address(self, address):

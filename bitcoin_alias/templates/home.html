@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="/" method="post">
+    {% csrf_token %}
+    <label for="aliasString">Alias: </label>
+    {{ form }}
+    
+    <input type="submit" value="OK">
+
+</form>
+{% endblock content %}

@@ -4,14 +4,12 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-pylint = "*"
 
 [packages]
-bigchaindb-driver = "*"
+django-crispy-forms = "*"
 django = "*"
+bigchaindb-driver = "*"
 base58 = "*"
-pylint = "*"
-pylint-django = "*"
 
 [requires]
 python_version = "3.6"

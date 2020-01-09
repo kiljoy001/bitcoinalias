@@ -1,4 +1,6 @@
 from bigchaindb_driver import BigchainDB
+from bitcoin_alias.asset_handling.create_user import User
+
 """Test Keys: Public:'7JxiZgoRUZvASFZQbgNbGjjqPHhJQTDKeeyyueMp4rjC', Private: 'B6uFt3PJNHhK48jE6m24j5mu2ykEjHyVKV4CpWUuFxp9'"""
 
 class Asset:
@@ -7,13 +9,12 @@ class Asset:
     URL = 'https://test.ipdb.io/'
     Bdb = BigchainDB(URL)
 
-    def __init__(self, address, alias):
-        self.bitcoin_address = address
-        self.metadata = alias
+    def __init__(self, User):
+        self.User = User
         self.bitcoin_address_asset_data = {
             'data': {
                 'address_alias_pair': {
-                    'bitcoin_address': self.bitcoin_address,
+                    'bitcoin_address': self.User.BitcoinAddress,
                     }
                 }
             }
@@ -50,28 +51,31 @@ class Asset:
             recipients=public_key,
             metadata=metadata,
         )
+
         """Sign transaction"""
         fulfilled_transfer_tx = Asset.Bdb.transactions.fulfill(
             prepared_transfer_tx,
             private_keys = owners_private_key
         )
+
         """Send to node"""
         Asset.Bdb.transactions.send_commit(fulfilled_transfer_tx)
 
-    def create_asset(self, public_key, owners_private_key):
+    def create_asset(self):
         """Create an asset"""
         prepared_creation_tx = Asset.Bdb.transactions.prepare(
             operation='CREATE',
-            signers=public_key,
+            signers=self.User.KeyPair.public_key,
             asset=self.bitcoin_address_asset_data,
-            metadata={'updated_alias':self.metadata}
+            metadata={'updated_alias':self.User.Alias}
         )
 
         """Sign transaction with private key"""
         signed_transaction = Asset.Bdb.transactions.fulfill(
             prepared_creation_tx,
-            private_keys=owners_private_key
+            private_keys=self.User.KeyPair.private_key
         )
+
         """Send transaction to BigchainDb node"""
         sent_token = Asset.Bdb.transactions.send_commit(signed_transaction)
 
