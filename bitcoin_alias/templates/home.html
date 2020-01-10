@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
-<!-- templates/home.html -->
 {% block content %}
+<!-- templates/home.html -->
 <form action="" method="post">
-    <label for="aliasString">Alias: </label>
     {% csrf_token %}
     {{ form }}
     

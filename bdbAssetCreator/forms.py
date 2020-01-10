@@ -2,10 +2,13 @@ from django import forms
 from bitcoin_alias.asset_handling.create_user import User
 from bitcoin_alias.asset_handling.asset_template import Asset
 from django.http import HttpResponseRedirect, HttpResponse
+from .models import TransactionId
 
 class AliasForm(forms.Form):
     aliasString = forms.CharField(label='alias', max_length=150)
     bitcoinAddress = forms.CharField(label='address', max_length=35)
+    model = TransactionId
+    fields = ('Id')
 
     def get_data(self, request):
         if request.method == 'POST':
