@@ -1,5 +1,6 @@
 from bigchaindb_driver import BigchainDB
 from bitcoin_alias.asset_handling.create_user import User
+import hashlib
 
 """Test Keys: Public:'7JxiZgoRUZvASFZQbgNbGjjqPHhJQTDKeeyyueMp4rjC', Private: 'B6uFt3PJNHhK48jE6m24j5mu2ykEjHyVKV4CpWUuFxp9'"""
 
